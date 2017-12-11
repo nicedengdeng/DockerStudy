@@ -1,0 +1,18 @@
+mysql:
+   image: xdl/mysql:5.5
+   ports: 
+     - "3306:3306"
+   volumes:
+     - /data/mysql:/var/lib/mysql
+   hostname: mydb.server.com
+
+tomcat:
+   image: tomcat:7.0.82
+   ports:
+      - "8080:8080"
+   links:
+      - mysql:db
+   environment:
+      - TOMCAT_USER=admin
+      - TOMCAT_PASS=admin
+   hostname: tomcat.server.com 
